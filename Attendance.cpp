@@ -122,7 +122,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    UpdateWindow(hWnd);
 
-   getCurrentDateAndTime();
+   //getCurrentDateAndTime();
 
    return TRUE;
 }
