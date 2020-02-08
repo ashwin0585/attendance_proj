@@ -36,6 +36,22 @@ try {
   con = driver->connect("tcp://127.0.0.1:3306", "root", "root");
   /* Connect to the MySQL test database */
   con->setSchema("test");
+  sql::Connection *con;
+sql::PreparedStatement  *prep_stmt
+// ...
+
+prep_stmt = con->prepareStatement("INSERT INTO test(id, label) VALUES (?, ?)");
+
+prep_stmt->setInt(1, 1);
+prep_stmt->setString(2, "a");
+prep_stmt->execute();
+
+prep_stmt->setInt(1, 2);
+prep_stmt->setString(2, "b");
+prep_stmt->execute();
+
+delete prep_stmt;
+delete con;
 
   stmt = con->createStatement();
   res = stmt->executeQuery("SELECT 'Hello World!' AS _message");
@@ -46,6 +62,7 @@ try {
     cout << "\t... MySQL says it again: ";
     /* Access column data by numeric offset, 1 is the first column */
     cout << res->getString(1) << endl;
+    
   }
   delete res;
   delete stmt;
